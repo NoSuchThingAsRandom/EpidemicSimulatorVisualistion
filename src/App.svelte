@@ -6,9 +6,8 @@
 	import Header from "./Header.svelte"
 	import Results from "./Results.svelte"
 	import Config from "./Config.svelte"
-	import {data,buildData} from "./data.ts";
+	import {data_store,buildData} from "./data.ts";
 
-	export let name: string;
 
 	const enum Tabs{
 		ModifyConfig="Modify Config File",
@@ -17,22 +16,19 @@
 	let tab_names=Object.values(Tabs);
 	let selected_tab=Tabs.Results;
 	onMount(async ()=>{
-		await new Promise(r=>setTimeout(r,2000));
-		console.log("Hello");
-		buildData()
+		await buildData()
 	})
 </script>
-<Header bind:selectedTab={selected_tab} bind:tabs={tab_names}>
+<Header style="height:10%"bind:selectedTab={selected_tab} bind:tabs={tab_names}>
 
 </Header>
-<main>
+<div style="width:100%">
 	{#if selected_tab === "View Results"}
-		<Results></Results>
+		<Results/>
 	{:else if selected_tab==="Modify Config File"}
-		<Config></Config>
+		<Config/>
 	{/if}
-	<div>
-</main>
+</div>
 
 <style>
 	main {
