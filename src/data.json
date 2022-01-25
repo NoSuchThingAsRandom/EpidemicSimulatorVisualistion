@@ -1,0 +1,32 @@
+{
+  "total": {
+    "steps": {
+      "0": {
+        "susceptible": 990,
+        "exposed": 10,
+        "infected": 0,
+        "recovered": 0
+      },"1": {
+        "susceptible": 990,
+        "exposed": 0,
+        "infected": 10,
+        "recovered": 0
+      },"2": {
+        "susceptible": 950,
+        "exposed": 40,
+        "infected": 10,
+        "recovered": 0
+      },"3": {
+        "susceptible": 900,
+        "exposed": 50,
+        "infected": 50,
+        "recovered": 0
+      },"4": {
+        "susceptible": 800,
+        "exposed": 100,
+        "infected": 90,
+        "recovered": 10
+      }
+    }
+  }
+}
