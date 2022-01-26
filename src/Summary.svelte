@@ -6,6 +6,10 @@
     let total_recovered=0;
     let total_vaccinated=0;
     function build_stats(){
+        console.log(raw_data);
+        if (raw_data==undefined){
+            return;
+        }
         for (let entry:StatisticsEntry of raw_data){
             total_infected+=entry.infected;
             total_recovered+=entry.recovered;

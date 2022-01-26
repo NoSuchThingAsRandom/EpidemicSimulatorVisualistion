@@ -31,6 +31,7 @@ export async function buildData() {
     let json =await fetch("v1.0.1-test.json").then(res => res.json());
     console.log(Object.keys(json));
     let all_data: [StatisticsEntry] = json["All"];
+    let output_area_data: [StatisticsEntry] = json["OutputArea"];
     console.log(all_data);
-    data_store.set(new Data("V1.0.1", {"All": all_data}));
+    data_store.set(new Data("V1.0.1", {"All": all_data,"OutputArea":output_area_data}));
 }

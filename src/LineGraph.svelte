@@ -2,11 +2,11 @@
     import {StatisticsEntry} from "./data.ts";
     import "@carbon/charts/styles.min.css";
     import "carbon-components/css/carbon-components.min.css";
-    import { LineChart } from "@carbon/charts-svelte";
+    import {LineChart, StackedAreaChart} from "@carbon/charts-svelte";
 
 
     export let raw_data: { [step_id: string]: StatisticsEntry };
-    export let name:string;
+    export let name: string;
     let data;
 
     function convert_data() {
@@ -44,21 +44,46 @@
 
     convert_data()
 </script>
-<LineChart data={data} options={{
-	"title": name,
-	"axes": {
-		"bottom": {
-			"title": "Time Step",
-			"mapsTo": "step",
-			"scaleType": "linear"
-		},
-		"left": {
-			"mapsTo": "value",
-			"title": "Number of Citizens",
-			"scaleType": "linear"
-		}
-	},
-	"curve": "curveMonotoneX",
-	"width":"500px",
-	"height":"800px",
-}}/>
+<div style="width: 100%;display: flex;justify-content: space-between">
+    <div style="width: 40%;margin-left: 2em">
+        <LineChart data={data} options={{
+            "title": name,
+            "axes": {
+                "bottom": {
+                    "title": "Time Step",
+                    "mapsTo": "step",
+                    "scaleType": "linear"
+                },
+                "left": {
+                    "mapsTo": "value",
+                    "title": "Number of Citizens",
+                    "scaleType": "linear"
+                }
+            },
+            "curve": "curveMonotoneX",
+            "width":"500px",
+            "height":"800px",
+        }}/>
+    </div>
+    <div style="width: 40%;margin-left: 2em">
+        <StackedAreaChart data={data} options={{
+            "title": "Stacked Percentages Data",
+            "axes": {
+                "left": {
+                    "stacked": true,
+                    "percentage": true,
+                    "ticks": {},
+                    "title":"Percentage of Population"
+                },
+                "bottom": {
+                    "scaleType": "linear",
+                    "mapsTo": "step",
+                    "title":"Time Step"
+                }
+            },
+            "curve": "curveMonotoneX",
+            "width": "500px",
+            "height": "800px"
+        }}/>
+    </div>
+</div>
